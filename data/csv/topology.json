@@ -1,0 +1,2351 @@
+{
+ "version_id": "v1",
+ "label": "改版前（11-11 08:00 起）",
+ "effective_from": 1794384000.0,
+ "effective_to": 1794492000.0,
+ "zones": [
+  {
+   "id": "fast",
+   "name": "快拣 A 区",
+   "kind": "picking",
+   "color": 1
+  },
+  {
+   "id": "cold",
+   "name": "冷链 B 区",
+   "kind": "picking",
+   "color": 2
+  },
+  {
+   "id": "staging",
+   "name": "复核打包区",
+   "kind": "staging",
+   "color": 3
+  },
+  {
+   "id": "dock",
+   "name": "越库 / 月台",
+   "kind": "dock",
+   "color": 0
+  },
+  {
+   "id": "main",
+   "name": "主通道",
+   "kind": "buffer",
+   "color": 0
+  }
+ ],
+ "entities": [
+  {
+   "id": "MAIN",
+   "name": "主通道",
+   "kind": "cross",
+   "zone": "main",
+   "capacity": 6,
+   "rect": {
+    "x": 14.0,
+    "y": 5.0,
+    "w": 6.0,
+    "h": 52.0
+   }
+  },
+  {
+   "id": "AISLE_A",
+   "name": "A 通道",
+   "kind": "rack",
+   "zone": "fast",
+   "capacity": 2,
+   "rect": {
+    "x": 24.0,
+    "y": 8.0,
+    "w": 14.0,
+    "h": 10.0
+   }
+  },
+  {
+   "id": "AISLE_B",
+   "name": "B 通道",
+   "kind": "rack",
+   "zone": "fast",
+   "capacity": 2,
+   "rect": {
+    "x": 42.0,
+    "y": 8.0,
+    "w": 14.0,
+    "h": 10.0
+   }
+  },
+  {
+   "id": "AISLE_C",
+   "name": "C 通道",
+   "kind": "rack",
+   "zone": "fast",
+   "capacity": 2,
+   "rect": {
+    "x": 60.0,
+    "y": 8.0,
+    "w": 14.0,
+    "h": 10.0
+   }
+  },
+  {
+   "id": "AISLE_D",
+   "name": "D 通道",
+   "kind": "rack",
+   "zone": "fast",
+   "capacity": 2,
+   "rect": {
+    "x": 78.0,
+    "y": 8.0,
+    "w": 14.0,
+    "h": 10.0
+   }
+  },
+  {
+   "id": "AISLE_E",
+   "name": "E 通道",
+   "kind": "rack",
+   "zone": "cold",
+   "capacity": 2,
+   "rect": {
+    "x": 24.0,
+    "y": 24.0,
+    "w": 14.0,
+    "h": 10.0
+   }
+  },
+  {
+   "id": "AISLE_F",
+   "name": "F 通道",
+   "kind": "rack",
+   "zone": "cold",
+   "capacity": 2,
+   "rect": {
+    "x": 42.0,
+    "y": 24.0,
+    "w": 14.0,
+    "h": 10.0
+   }
+  },
+  {
+   "id": "AISLE_G",
+   "name": "G 通道",
+   "kind": "rack",
+   "zone": "cold",
+   "capacity": 2,
+   "rect": {
+    "x": 60.0,
+    "y": 24.0,
+    "w": 14.0,
+    "h": 10.0
+   }
+  },
+  {
+   "id": "AISLE_H",
+   "name": "H 通道",
+   "kind": "rack",
+   "zone": "cold",
+   "capacity": 2,
+   "rect": {
+    "x": 78.0,
+    "y": 24.0,
+    "w": 14.0,
+    "h": 10.0
+   }
+  },
+  {
+   "id": "STAGE",
+   "name": "复核打包区",
+   "kind": "staging",
+   "zone": "staging",
+   "capacity": 5,
+   "rect": {
+    "x": 24.0,
+    "y": 44.0,
+    "w": 68.0,
+    "h": 12.0
+   }
+  },
+  {
+   "id": "DOCK",
+   "name": "越库 / 月台",
+   "kind": "dock",
+   "zone": "dock",
+   "capacity": 3,
+   "rect": {
+    "x": 2.0,
+    "y": 10.0,
+    "w": 10.0,
+    "h": 13.0
+   }
+  }
+ ],
+ "nodes": [
+  {
+   "id": "S0",
+   "x": 17.0,
+   "y": 7.0,
+   "entity": "MAIN"
+  },
+  {
+   "id": "S1",
+   "x": 17.0,
+   "y": 17.0,
+   "entity": "MAIN"
+  },
+  {
+   "id": "S2",
+   "x": 17.0,
+   "y": 28.0,
+   "entity": "MAIN"
+  },
+  {
+   "id": "S3",
+   "x": 17.0,
+   "y": 40.0,
+   "entity": "MAIN"
+  },
+  {
+   "id": "S4",
+   "x": 17.0,
+   "y": 53.0,
+   "entity": "MAIN"
+  },
+  {
+   "id": "BLK_A",
+   "x": 21.5,
+   "y": 13.0,
+   "entity": "AISLE_A"
+  },
+  {
+   "id": "BLK_B",
+   "x": 39.5,
+   "y": 13.0,
+   "entity": "AISLE_B"
+  },
+  {
+   "id": "BLK_C",
+   "x": 57.5,
+   "y": 13.0,
+   "entity": "AISLE_C"
+  },
+  {
+   "id": "BLK_D",
+   "x": 75.5,
+   "y": 13.0,
+   "entity": "AISLE_D"
+  },
+  {
+   "id": "BLK_E",
+   "x": 21.5,
+   "y": 29.0,
+   "entity": "AISLE_E"
+  },
+  {
+   "id": "BLK_F",
+   "x": 39.5,
+   "y": 29.0,
+   "entity": "AISLE_F"
+  },
+  {
+   "id": "BLK_G",
+   "x": 57.5,
+   "y": 29.0,
+   "entity": "AISLE_G"
+  },
+  {
+   "id": "BLK_H",
+   "x": 75.5,
+   "y": 29.0,
+   "entity": "AISLE_H"
+  },
+  {
+   "id": "STAGE_N",
+   "x": 58.0,
+   "y": 47.0,
+   "entity": "STAGE"
+  },
+  {
+   "id": "DOCK_N",
+   "x": 7.0,
+   "y": 16.5,
+   "entity": "DOCK"
+  }
+ ],
+ "edges": [
+  {
+   "a": "S0",
+   "b": "S1",
+   "distance_m": 10.0
+  },
+  {
+   "a": "S1",
+   "b": "S2",
+   "distance_m": 11.0
+  },
+  {
+   "a": "S2",
+   "b": "S3",
+   "distance_m": 12.0
+  },
+  {
+   "a": "S3",
+   "b": "S4",
+   "distance_m": 13.0
+  },
+  {
+   "a": "BLK_A",
+   "b": "S1",
+   "distance_m": 4.5
+  },
+  {
+   "a": "BLK_B",
+   "b": "S1",
+   "distance_m": 22.5
+  },
+  {
+   "a": "BLK_C",
+   "b": "S1",
+   "distance_m": 40.5
+  },
+  {
+   "a": "BLK_D",
+   "b": "S1",
+   "distance_m": 58.5
+  },
+  {
+   "a": "BLK_E",
+   "b": "S2",
+   "distance_m": 4.5
+  },
+  {
+   "a": "BLK_F",
+   "b": "S2",
+   "distance_m": 22.5
+  },
+  {
+   "a": "BLK_G",
+   "b": "S2",
+   "distance_m": 40.5
+  },
+  {
+   "a": "BLK_H",
+   "b": "S2",
+   "distance_m": 58.5
+  },
+  {
+   "a": "S4",
+   "b": "STAGE_N",
+   "distance_m": 42.0
+  },
+  {
+   "a": "S1",
+   "b": "DOCK_N",
+   "distance_m": 10.0
+  }
+ ],
+ "locations": [
+  {
+   "id": "A1-L01",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 27.2,
+   "y": 8.9,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A1-L02",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 28.55,
+   "y": 8.9,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A1-L03",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 29.9,
+   "y": 8.9,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A1-R01",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 31.25,
+   "y": 8.9,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A1-R02",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 32.6,
+   "y": 8.9,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A1-R03",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 33.95,
+   "y": 8.9,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A2-L01",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 27.2,
+   "y": 11.15,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A2-L02",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 28.55,
+   "y": 11.15,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A2-L03",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 29.9,
+   "y": 11.15,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A2-R01",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 31.25,
+   "y": 11.15,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A2-R02",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 32.6,
+   "y": 11.15,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A2-R03",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 33.95,
+   "y": 11.15,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A3-L01",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 27.2,
+   "y": 13.4,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A3-L02",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 28.55,
+   "y": 13.4,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A3-L03",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 29.9,
+   "y": 13.4,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A3-R01",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 31.25,
+   "y": 13.4,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A3-R02",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 32.6,
+   "y": 13.4,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A3-R03",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 33.95,
+   "y": 13.4,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A4-L01",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 27.2,
+   "y": 15.65,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A4-L02",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 28.55,
+   "y": 15.65,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A4-L03",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 29.9,
+   "y": 15.65,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A4-R01",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 31.25,
+   "y": 15.65,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A4-R02",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 32.6,
+   "y": 15.65,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "A4-R03",
+   "entity": "AISLE_A",
+   "zone": "fast",
+   "x": 33.95,
+   "y": 15.65,
+   "node": "BLK_A",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B1-L01",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 45.2,
+   "y": 8.9,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B1-L02",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 46.55,
+   "y": 8.9,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B1-L03",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 47.9,
+   "y": 8.9,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B1-R01",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 49.25,
+   "y": 8.9,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B1-R02",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 50.6,
+   "y": 8.9,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B1-R03",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 51.95,
+   "y": 8.9,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B2-L01",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 45.2,
+   "y": 11.15,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B2-L02",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 46.55,
+   "y": 11.15,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B2-L03",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 47.9,
+   "y": 11.15,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B2-R01",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 49.25,
+   "y": 11.15,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B2-R02",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 50.6,
+   "y": 11.15,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B2-R03",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 51.95,
+   "y": 11.15,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B3-L01",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 45.2,
+   "y": 13.4,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B3-L02",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 46.55,
+   "y": 13.4,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B3-L03",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 47.9,
+   "y": 13.4,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B3-R01",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 49.25,
+   "y": 13.4,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B3-R02",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 50.6,
+   "y": 13.4,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B3-R03",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 51.95,
+   "y": 13.4,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B4-L01",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 45.2,
+   "y": 15.65,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B4-L02",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 46.55,
+   "y": 15.65,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B4-L03",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 47.9,
+   "y": 15.65,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B4-R01",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 49.25,
+   "y": 15.65,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B4-R02",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 50.6,
+   "y": 15.65,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "B4-R03",
+   "entity": "AISLE_B",
+   "zone": "fast",
+   "x": 51.95,
+   "y": 15.65,
+   "node": "BLK_B",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C1-L01",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 63.2,
+   "y": 8.9,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C1-L02",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 64.55,
+   "y": 8.9,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C1-L03",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 65.9,
+   "y": 8.9,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C1-R01",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 67.25,
+   "y": 8.9,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C1-R02",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 68.6,
+   "y": 8.9,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C1-R03",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 69.95,
+   "y": 8.9,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C2-L01",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 63.2,
+   "y": 11.15,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C2-L02",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 64.55,
+   "y": 11.15,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C2-L03",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 65.9,
+   "y": 11.15,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C2-R01",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 67.25,
+   "y": 11.15,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C2-R02",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 68.6,
+   "y": 11.15,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C2-R03",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 69.95,
+   "y": 11.15,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C3-L01",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 63.2,
+   "y": 13.4,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C3-L02",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 64.55,
+   "y": 13.4,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C3-L03",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 65.9,
+   "y": 13.4,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C3-R01",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 67.25,
+   "y": 13.4,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C3-R02",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 68.6,
+   "y": 13.4,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C3-R03",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 69.95,
+   "y": 13.4,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C4-L01",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 63.2,
+   "y": 15.65,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C4-L02",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 64.55,
+   "y": 15.65,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C4-L03",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 65.9,
+   "y": 15.65,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C4-R01",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 67.25,
+   "y": 15.65,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C4-R02",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 68.6,
+   "y": 15.65,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "C4-R03",
+   "entity": "AISLE_C",
+   "zone": "fast",
+   "x": 69.95,
+   "y": 15.65,
+   "node": "BLK_C",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D1-L01",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 81.2,
+   "y": 8.9,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D1-L02",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 82.55,
+   "y": 8.9,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D1-L03",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 83.9,
+   "y": 8.9,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D1-R01",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 85.25,
+   "y": 8.9,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D1-R02",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 86.6,
+   "y": 8.9,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D1-R03",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 87.95,
+   "y": 8.9,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D2-L01",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 81.2,
+   "y": 11.15,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D2-L02",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 82.55,
+   "y": 11.15,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D2-L03",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 83.9,
+   "y": 11.15,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D2-R01",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 85.25,
+   "y": 11.15,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D2-R02",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 86.6,
+   "y": 11.15,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D2-R03",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 87.95,
+   "y": 11.15,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D3-L01",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 81.2,
+   "y": 13.4,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D3-L02",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 82.55,
+   "y": 13.4,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D3-L03",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 83.9,
+   "y": 13.4,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D3-R01",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 85.25,
+   "y": 13.4,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D3-R02",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 86.6,
+   "y": 13.4,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D3-R03",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 87.95,
+   "y": 13.4,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D4-L01",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 81.2,
+   "y": 15.65,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D4-L02",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 82.55,
+   "y": 15.65,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D4-L03",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 83.9,
+   "y": 15.65,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D4-R01",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 85.25,
+   "y": 15.65,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D4-R02",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 86.6,
+   "y": 15.65,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "D4-R03",
+   "entity": "AISLE_D",
+   "zone": "fast",
+   "x": 87.95,
+   "y": 15.65,
+   "node": "BLK_D",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E1-L01",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 27.2,
+   "y": 24.9,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E1-L02",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 28.55,
+   "y": 24.9,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E1-L03",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 29.9,
+   "y": 24.9,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E1-R01",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 31.25,
+   "y": 24.9,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E1-R02",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 32.6,
+   "y": 24.9,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E1-R03",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 33.95,
+   "y": 24.9,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E2-L01",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 27.2,
+   "y": 27.15,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E2-L02",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 28.55,
+   "y": 27.15,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E2-L03",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 29.9,
+   "y": 27.15,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E2-R01",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 31.25,
+   "y": 27.15,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E2-R02",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 32.6,
+   "y": 27.15,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E2-R03",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 33.95,
+   "y": 27.15,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E3-L01",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 27.2,
+   "y": 29.4,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E3-L02",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 28.55,
+   "y": 29.4,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E3-L03",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 29.9,
+   "y": 29.4,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E3-R01",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 31.25,
+   "y": 29.4,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E3-R02",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 32.6,
+   "y": 29.4,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E3-R03",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 33.95,
+   "y": 29.4,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E4-L01",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 27.2,
+   "y": 31.65,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E4-L02",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 28.55,
+   "y": 31.65,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E4-L03",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 29.9,
+   "y": 31.65,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E4-R01",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 31.25,
+   "y": 31.65,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E4-R02",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 32.6,
+   "y": 31.65,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "E4-R03",
+   "entity": "AISLE_E",
+   "zone": "cold",
+   "x": 33.95,
+   "y": 31.65,
+   "node": "BLK_E",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F1-L01",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 45.2,
+   "y": 24.9,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F1-L02",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 46.55,
+   "y": 24.9,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F1-L03",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 47.9,
+   "y": 24.9,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F1-R01",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 49.25,
+   "y": 24.9,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F1-R02",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 50.6,
+   "y": 24.9,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F1-R03",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 51.95,
+   "y": 24.9,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F2-L01",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 45.2,
+   "y": 27.15,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F2-L02",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 46.55,
+   "y": 27.15,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F2-L03",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 47.9,
+   "y": 27.15,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F2-R01",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 49.25,
+   "y": 27.15,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F2-R02",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 50.6,
+   "y": 27.15,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F2-R03",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 51.95,
+   "y": 27.15,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F3-L01",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 45.2,
+   "y": 29.4,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F3-L02",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 46.55,
+   "y": 29.4,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F3-L03",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 47.9,
+   "y": 29.4,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F3-R01",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 49.25,
+   "y": 29.4,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F3-R02",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 50.6,
+   "y": 29.4,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F3-R03",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 51.95,
+   "y": 29.4,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F4-L01",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 45.2,
+   "y": 31.65,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F4-L02",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 46.55,
+   "y": 31.65,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F4-L03",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 47.9,
+   "y": 31.65,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F4-R01",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 49.25,
+   "y": 31.65,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F4-R02",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 50.6,
+   "y": 31.65,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "F4-R03",
+   "entity": "AISLE_F",
+   "zone": "cold",
+   "x": 51.95,
+   "y": 31.65,
+   "node": "BLK_F",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G1-L01",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 63.2,
+   "y": 24.9,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G1-L02",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 64.55,
+   "y": 24.9,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G1-L03",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 65.9,
+   "y": 24.9,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G1-R01",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 67.25,
+   "y": 24.9,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G1-R02",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 68.6,
+   "y": 24.9,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G1-R03",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 69.95,
+   "y": 24.9,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G2-L01",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 63.2,
+   "y": 27.15,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G2-L02",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 64.55,
+   "y": 27.15,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G2-L03",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 65.9,
+   "y": 27.15,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G2-R01",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 67.25,
+   "y": 27.15,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G2-R02",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 68.6,
+   "y": 27.15,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G2-R03",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 69.95,
+   "y": 27.15,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G3-L01",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 63.2,
+   "y": 29.4,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G3-L02",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 64.55,
+   "y": 29.4,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G3-L03",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 65.9,
+   "y": 29.4,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G3-R01",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 67.25,
+   "y": 29.4,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G3-R02",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 68.6,
+   "y": 29.4,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G3-R03",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 69.95,
+   "y": 29.4,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G4-L01",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 63.2,
+   "y": 31.65,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G4-L02",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 64.55,
+   "y": 31.65,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G4-L03",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 65.9,
+   "y": 31.65,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G4-R01",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 67.25,
+   "y": 31.65,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G4-R02",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 68.6,
+   "y": 31.65,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "G4-R03",
+   "entity": "AISLE_G",
+   "zone": "cold",
+   "x": 69.95,
+   "y": 31.65,
+   "node": "BLK_G",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H1-L01",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 81.2,
+   "y": 24.9,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H1-L02",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 82.55,
+   "y": 24.9,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H1-L03",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 83.9,
+   "y": 24.9,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H1-R01",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 85.25,
+   "y": 24.9,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H1-R02",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 86.6,
+   "y": 24.9,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H1-R03",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 87.95,
+   "y": 24.9,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H2-L01",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 81.2,
+   "y": 27.15,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H2-L02",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 82.55,
+   "y": 27.15,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H2-L03",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 83.9,
+   "y": 27.15,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H2-R01",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 85.25,
+   "y": 27.15,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H2-R02",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 86.6,
+   "y": 27.15,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H2-R03",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 87.95,
+   "y": 27.15,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H3-L01",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 81.2,
+   "y": 29.4,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H3-L02",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 82.55,
+   "y": 29.4,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H3-L03",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 83.9,
+   "y": 29.4,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H3-R01",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 85.25,
+   "y": 29.4,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H3-R02",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 86.6,
+   "y": 29.4,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H3-R03",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 87.95,
+   "y": 29.4,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H4-L01",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 81.2,
+   "y": 31.65,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H4-L02",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 82.55,
+   "y": 31.65,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H4-L03",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 83.9,
+   "y": 31.65,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H4-R01",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 85.25,
+   "y": 31.65,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H4-R02",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 86.6,
+   "y": 31.65,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "H4-R03",
+   "entity": "AISLE_H",
+   "zone": "cold",
+   "x": 87.95,
+   "y": 31.65,
+   "node": "BLK_H",
+   "local_m": 6.0,
+   "kind": "bin"
+  },
+  {
+   "id": "STG-01",
+   "entity": "STAGE",
+   "zone": "staging",
+   "x": 32.0,
+   "y": 50.0,
+   "node": "STAGE_N",
+   "local_m": 8.0,
+   "kind": "stage"
+  },
+  {
+   "id": "DK-01",
+   "entity": "DOCK",
+   "zone": "dock",
+   "x": 4.5,
+   "y": 13.0,
+   "node": "DOCK_N",
+   "local_m": 4.0,
+   "kind": "dock"
+  },
+  {
+   "id": "STG-02",
+   "entity": "STAGE",
+   "zone": "staging",
+   "x": 48.0,
+   "y": 50.0,
+   "node": "STAGE_N",
+   "local_m": 8.0,
+   "kind": "stage"
+  },
+  {
+   "id": "DK-02",
+   "entity": "DOCK",
+   "zone": "dock",
+   "x": 4.5,
+   "y": 15.6,
+   "node": "DOCK_N",
+   "local_m": 4.0,
+   "kind": "dock"
+  },
+  {
+   "id": "STG-03",
+   "entity": "STAGE",
+   "zone": "staging",
+   "x": 64.0,
+   "y": 50.0,
+   "node": "STAGE_N",
+   "local_m": 8.0,
+   "kind": "stage"
+  },
+  {
+   "id": "DK-03",
+   "entity": "DOCK",
+   "zone": "dock",
+   "x": 4.5,
+   "y": 18.2,
+   "node": "DOCK_N",
+   "local_m": 4.0,
+   "kind": "dock"
+  },
+  {
+   "id": "STG-04",
+   "entity": "STAGE",
+   "zone": "staging",
+   "x": 80.0,
+   "y": 50.0,
+   "node": "STAGE_N",
+   "local_m": 8.0,
+   "kind": "stage"
+  },
+  {
+   "id": "DK-04",
+   "entity": "DOCK",
+   "zone": "dock",
+   "x": 4.5,
+   "y": 20.8,
+   "node": "DOCK_N",
+   "local_m": 4.0,
+   "kind": "dock"
+  }
+ ],
+ "aliases": {},
+ "changes": []
+}

@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>仓内作业分析 · WH-SYN-01</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <div>
+        <h1>仓内作业分析</h1>
+        <p id="brand-sub">按扫码流水还原人员作业区域 · 合成数据</p>
+      </div>
+    </div>
+    <nav class="modes" role="tablist" aria-label="分析视图">
+      <button class="mode-tab" role="tab" data-view="floor" aria-selected="true">区域还原</button>
+      <button class="mode-tab" role="tab" data-view="conflicts" aria-selected="false">通道冲突</button>
+      <button class="mode-tab" role="tab" data-view="replay" aria-selected="false">发单顺序回放</button>
+      <button class="mode-tab" role="tab" data-view="import" aria-selected="false">数据导入</button>
+    </nav>
+    <div class="top-actions">
+      <button id="theme-toggle" class="ghost-btn" aria-label="切换明暗主题">暗色</button>
+      <button id="params-btn" class="primary-btn" aria-expanded="false" aria-controls="params-panel">推断参数</button>
+    </div>
+  </header>
+
+  <section class="filterbar" id="filterbar" aria-label="筛选">
+    <div class="filter-group">
+      <label for="scenario-select">场景</label>
+      <select id="scenario-select"></select>
+    </div>
+    <div class="filter-group range-group">
+      <label for="window-start">时间窗</label>
+      <div class="range-controls">
+        <input type="range" id="window-start" min="0" max="5400" step="60" value="0" aria-label="时间窗起点">
+        <input type="range" id="window-end" min="0" max="5400" step="60" value="5400" aria-label="时间窗终点">
+      </div>
+      <span id="window-label" class="mono">08:00–09:30</span>
+    </div>
+    <div class="filter-group">
+      <label for="zone-filter">区域</label>
+      <select id="zone-filter"><option value="all">全部区域</option></select>
+    </div>
+    <div class="filter-group">
+      <label for="picker-filter">人员</label>
+      <select id="picker-filter"><option value="all">全部人员</option></select>
+    </div>
+    <div class="filter-group toggles" role="group" aria-label="显示层级">
+      <label class="check"><input type="checkbox" id="show-observer" checked><span>确切驻留</span></label>
+      <label class="check"><input type="checkbox" id="show-possible" checked><span>可能区间</span></label>
+      <label class="check"><input type="checkbox" id="show-unknown" checked><span>未知/缺口</span></label>
+    </div>
+    <button id="reset-filters" class="ghost-btn small">重置</button>
+  </section>
+
+  <main>
+    <!-- 区域还原 -->
+    <section class="view" id="view-floor">
+      <div class="kpi-row" id="floor-kpis"></div>
+      <div class="floor-grid">
+        <div class="card map-card">
+          <div class="card-head">
+            <div>
+              <h2>区域占用与人员位置</h2>
+              <p class="card-sub" id="map-sub">方框为通道/区域实体，括号内为通道容量</p>
+            </div>
+            <div class="legend" id="map-legend"></div>
+          </div>
+          <div class="map-wrap">
+            <svg id="floor-map" viewBox="0 0 96 66" role="img" aria-label="仓库平面图，显示人员位置与通道占用"></svg>
+            <div class="map-tooltip" id="map-tooltip" role="status" hidden></div>
+          </div>
+          <div class="scrubber">
+            <button id="play-toggle" class="ghost-btn" aria-label="播放/暂停">▶ 播放</button>
+            <input type="range" id="time-scrub" min="0" max="5400" step="15" value="0" aria-label="回放时刻">
+            <span id="scrub-label" class="mono">08:00:00</span>
+            <div class="speed">
+              <label for="play-speed">速度</label>
+              <select id="play-speed">
+                <option value="60">1× (模拟分钟/秒)</option>
+                <option value="180" selected>3×</option>
+                <option value="600">10×</option>
+              </select>
+            </div>
+          </div>
+          <p class="method-note" id="method-note">
+            扫码只给观测点：同一货位连续扫码为<b>确切驻留</b>；两次扫码之间为<b>可能区间</b>；
+            超过阈值无扫描标为<b>位置未知</b>，不会一直算在最后货位。
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>区域占用时间线</h2>
+              <p class="card-sub">按 60 秒分桶；浅色为推测，深色为确证</p>
+            </div>
+          </div>
+          <div id="zone-bars" class="zone-bars"></div>
+          <div class="table-toggle">
+            <button class="link-btn" data-table="zone" aria-expanded="false">表格视图</button>
+          </div>
+          <div class="table-host" id="table-zone" hidden></div>
+        </div>
+        <div class="card timeline-card">
+          <div class="card-head">
+            <div>
+              <h2>人员轨迹分段</h2>
+              <p class="card-sub">每行一名人员；颜色区分区域，条纹为推测区间</p>
+            </div>
+            <div class="legend" id="timeline-legend"></div>
+          </div>
+          <div id="picker-timelines" class="timelines"></div>
+          <div class="table-toggle">
+            <button class="link-btn" data-table="segments" aria-expanded="false">表格视图</button>
+          </div>
+          <div class="table-host" id="table-segments" hidden></div>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>数据质量</h2>
+              <p class="card-sub">重复扫码、长间隔与设备分布</p>
+            </div>
+          </div>
+          <div id="quality-body" class="quality"></div>
+          <div class="panel-section" id="topology-section">
+            <h3>拓扑版本与改版</h3>
+            <div id="topology-info" class="topology-info"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 冲突 -->
+    <section class="view" id="view-conflicts" hidden>
+      <div class="kpi-row" id="conflict-kpis"></div>
+      <div class="conflict-grid">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>通道同时占用</h2>
+              <p class="card-sub">实线为观测人数，虚线为叠加推测后的上界；横线为容量</p>
+            </div>
+            <div class="legend" id="capacity-legend"></div>
+          </div>
+          <div id="capacity-charts" class="capacity-charts"></div>
+          <div class="table-toggle">
+            <button class="link-btn" data-table="capacity" aria-expanded="false">表格视图</button>
+          </div>
+          <div class="table-host" id="table-capacity" hidden></div>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>冲突成因构成</h2>
+              <p class="card-sub">按超容量区间数；成因是候选解释，不是判决</p>
+            </div>
+          </div>
+          <div id="cause-bars" class="cause-bars"></div>
+          <div class="caveat" id="causality-note">
+            <strong>相关不等于因果。</strong>
+            同一通道同时出现的人多，可能来自任务分配交叉、扫描缺失导致区间变长，或只是推测区间的叠加。
+            下表把三者分开，并列出替代解释。
+          </div>
+        </div>
+        <div class="card wide">
+          <div class="card-head">
+            <div>
+              <h2>冲突区间明细</h2>
+              <p class="card-sub">点击一行展开涉及的作业单与人员</p>
+            </div>
+            <div class="segmented" role="group" aria-label="冲突筛选">
+              <button data-cause="all" aria-pressed="true">全部</button>
+              <button data-cause="task_cross" aria-pressed="false">任务交叉</button>
+              <button data-cause="data_gap" aria-pressed="false">数据缺失</button>
+              <button data-cause="possible" aria-pressed="false">推测重叠</button>
+            </div>
+          </div>
+          <div class="conflict-list" id="conflict-list"></div>
+          <div class="table-toggle">
+            <button class="link-btn" data-table="conflicts" aria-expanded="false">表格视图</button>
+          </div>
+          <div class="table-host" id="table-conflicts" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 回放 -->
+    <section class="view" id="view-replay" hidden>
+      <div class="kpi-row" id="replay-kpis"></div>
+      <div class="replay-grid">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>整窗指标对比</h2>
+              <p class="card-sub">同一批作业与人员，仅发单顺序/节奏不同</p>
+            </div>
+          </div>
+          <div id="replay-compare" class="replay-compare"></div>
+          <div class="caveat" id="replay-caveats"></div>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>两套顺序同步回放</h2>
+              <p class="card-sub">同一时刻并排查看各通道占用（人数 / 容量，+n 为推测）</p>
+            </div>
+          </div>
+          <div class="replay-maps">
+            <div class="replay-map">
+              <h3>方案 A · 波次集中发单</h3>
+              <svg id="replay-map-a" viewBox="0 0 96 66" role="img" aria-label="方案 A 回放平面图"></svg>
+              <div class="mini-stats" id="replay-stats-a"></div>
+            </div>
+            <div class="replay-map">
+              <h3>方案 B · 跨区混流发单</h3>
+              <svg id="replay-map-b" viewBox="0 0 96 66" role="img" aria-label="方案 B 回放平面图"></svg>
+              <div class="mini-stats" id="replay-stats-b"></div>
+            </div>
+          </div>
+          <div class="scrubber">
+            <button id="replay-play" class="ghost-btn">▶ 播放</button>
+            <input type="range" id="replay-scrub" min="0" max="5400" step="15" value="0" aria-label="回放时刻">
+            <span id="replay-label" class="mono">08:00:00</span>
+          </div>
+        </div>
+        <div class="card wide">
+          <div class="card-head">
+            <div>
+              <h2>冲突差异与替代解释</h2>
+              <p class="card-sub">只报差异，不宣称因果；每项都附可能解释</p>
+            </div>
+          </div>
+          <div id="replay-diff" class="replay-diff"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 导入 -->
+    <section class="view" id="view-import" hidden>
+      <div class="import-grid">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>导入本地数据</h2>
+              <p class="card-sub">拓扑 JSON + 扫码 CSV + 作业单 CSV，全部本地处理，不上传外部服务</p>
+            </div>
+          </div>
+          <form id="import-form" class="import-form">
+            <label class="file-field">
+              <span>拓扑 topology.json</span>
+              <input type="file" name="topology" accept=".json,application/json" required>
+              <em>结构见 data/csv/topology.json</em>
+            </label>
+            <label class="file-field">
+              <span>扫码 scans.csv</span>
+              <input type="file" name="scans" accept=".csv,text/csv" required>
+              <em>scan_id, ts, picker, location, task, device, source, kind, duplicate_of</em>
+            </label>
+            <label class="file-field">
+              <span>作业单 tasks.csv</span>
+              <input type="file" name="tasks" accept=".csv,text/csv" required>
+              <em>task_id, zone, released_at, cancelled_at, order_ids, locations</em>
+            </label>
+            <div class="import-actions">
+              <button type="submit" class="primary-btn">解析并分析</button>
+              <button type="button" class="ghost-btn" id="import-sample">载入内置样例说明</button>
+            </div>
+            <p class="form-error" id="import-error" role="alert" hidden></p>
+          </form>
+          <div class="import-result" id="import-result" hidden></div>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>格式与时间字段</h2>
+              <p class="card-sub">时间可用 ISO8601（含时区）或 epoch 秒</p>
+            </div>
+          </div>
+          <div class="format-doc" id="format-doc">
+            <pre><code>scans.csv
+scan_id,ts,picker,location,task,device,source,kind,duplicate_of,note
+S00001,2026-11-11T08:00:39+00:00,P01,B3-L03,D1-001,HH-101,handheld,pick,,</code></pre>
+            <ul>
+              <li><b>kind</b>：pick / confirm / repeat / manual。repeat 会被合并进上一次扫描，并保留审计记录。</li>
+              <li><b>duplicate_of</b>：重复扫码指向原始 scan_id；缺失时按同人同货位短间隔合并。</li>
+              <li><b>cancelled_at</b>：任务取消时间。取消前取消的任务不产生扫码；取货中途取消的任务保留已发生的扫码。</li>
+              <li>旧货位条码在拓扑的 <code>aliases</code> 中映射到当前货位，改版前的历史事件仍按当时区域解释。</li>
+            </ul>
+          </div>
+          <div class="caveat">
+            导入数据不提供真值，因此不显示校准指标；推断结果只基于扫码与拓扑。
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="params-panel" id="params-panel" hidden aria-label="推断参数">
+    <div class="panel-head">
+      <h2>推断参数</h2>
+      <button id="params-close" class="ghost-btn small" aria-label="关闭参数面板">关闭</button>
+    </div>
+    <p class="panel-sub">调整后立即重算。参数属于假设，不是事实。</p>
+    <div id="params-fields" class="param-fields"></div>
+    <div class="panel-section">
+      <h3>行走速度建议</h3>
+      <div id="speed-advice" class="speed-advice">载入中…</div>
+      <button id="apply-speed" class="ghost-btn small" hidden>采用建议速度</button>
+    </div>
+    <div class="panel-section">
+      <h3>推断校准（仅合成数据）</h3>
+      <div id="calibration" class="calibration">载入中…</div>
+    </div>
+    <div class="panel-foot">
+      <button id="params-reset" class="ghost-btn small">恢复默认</button>
+      <button id="params-apply" class="primary-btn">重新计算</button>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+</div>
+<script src="/app.js" type="module"></script>
+</body>
+</html>
